@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BidCraft - Live Auction Details</title>
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="item-page">
+
+  <!-- Header Navigation -->
+  <nav class="navbar glass">
+    <a href="index.html" class="logo">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#logo-grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      BidCraft
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+    <div class="nav-auth" id="nav-auth">
+      <!-- Injected Dynamically -->
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    
+    <a href="index.html" class="btn btn-secondary" style="margin-bottom: 1.5rem; padding: 0.5rem 1rem; font-size: 0.85rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(180deg);"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      Back to Listings
+    </a>
+
+    <!-- Detail Layout -->
+    <div class="detail-layout">
+      
+      <!-- Left Panel: Product presentation -->
+      <div>
+        <div class="detail-image-card glass">
+          <img id="detail-image" class="detail-image" src="" alt="Auction Item" onerror="this.src='/uploads/placeholder.png'">
+        </div>
+        
+        <div class="glass" style="padding: 2rem; margin-top: 2rem;">
+          <div class="detail-category" id="detail-category">--</div>
+          <h1 class="detail-title" id="detail-title">Loading Auction Details...</h1>
+          
+          <div class="detail-seller-info">
+            <span>Listed by: <b id="detail-seller">--</b></span>
+            <span>Starting bid: <b id="detail-start-price">--</b></span>
+          </div>
+
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Description</h3>
+          <p class="detail-description" id="detail-description">
+            --
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Panel: Bidding & Realtime action -->
+      <div>
+        <div class="bidding-card glass">
+          
+          <div class="bidding-timer-box">
+            <div>
+              <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-text-secondary);">Live Status</span>
+              <div style="display: flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--success); margin-top: 0.2rem;">
+                <span style="width: 8px; height: 8px; background: var(--success); border-radius: 50%; display: inline-block; box-shadow: 0 0 8px var(--success);"></span>
+                Active Auction
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-text-secondary);">Time Remaining</span>
+              <div id="detail-countdown" class="timer-value" style="font-size: 1.25rem; font-weight: 800; margin-top: 0.2rem;">--:--:--</div>
+            </div>
+          </div>
+
+          <div class="price-box">
+            <div class="price-label">Current Bid</div>
+            <div class="price-amount" id="detail-current-bid">₹0.00</div>
+            <div class="bidder-name" id="detail-bidder-name">Highest bidder: <span>None</span></div>
+          </div>
+
+          <!-- Bidding Input Form -->
+          <form id="bid-form" class="bidding-form-wrapper">
+            <div class="form-group">
+              <label for="bid-amount" style="text-align: center;">Set Bid Amount (₹)</label>
+              <div class="bid-input-group">
+                <input type="number" id="bid-amount" class="form-control" placeholder="Enter bid..." required>
+                <button type="submit" id="place-bid-btn" class="btn btn-cyan">Place Bid</button>
+              </div>
+              <div class="bid-helper-text">Bids are placed securely and funds are held in reserve.</div>
+            </div>
+          </form>
+
+          <!-- Seller Actions (Confirm/Reject Bid) -->
+          <div id="seller-actions-wrapper" style="display: none; border-top: 1px solid var(--border-glass); padding-top: 1.5rem; margin-top: 1.5rem;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--color-text-secondary); margin-bottom: 0.75rem; text-align: center;">Seller Management Options</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <button id="reject-bid-btn" class="btn btn-secondary" style="border-color: var(--error); color: var(--error); background: rgba(217, 4, 41, 0.03); width: 100%;">Reject Bid</button>
+              <button id="confirm-bid-btn" class="btn btn-primary" style="width: 100%;">Confirm Bid</button>
+            </div>
+            <div class="bid-helper-text" style="margin-top: 0.5rem; text-align: center;">Confirming ends the auction early. Rejecting refunds the bidder.</div>
+          </div>
+
+        </div>
+
+        <!-- Bid History List -->
+        <div class="history-card glass">
+          <h3>Live Bidding Stream</h3>
+          <div class="bid-list" id="bid-history-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer style="margin-top: 5rem; padding: 2rem; border-top: 1px solid var(--border-glass); text-align: center; color: var(--color-text-secondary); font-size: 0.9rem;">
+    <p>&copy; 2026 BidCraft. All rights reserved.</p>
+  </footer>
+
+  <!-- Core JavaScript Libraries -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/socket.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

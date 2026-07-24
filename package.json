@@ -1,0 +1,10 @@
+{
+  "name": "auction-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "bash ./start.sh",
+    "dev": "bash ./start.sh",
+    "seed": "npm --prefix backend run seed"
+  }
+}

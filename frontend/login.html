@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BidCraft Portal - Login / Signup</title>
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="auth-page">
+
+  <!-- Header Navigation -->
+  <nav class="navbar glass">
+    <a href="index.html" class="logo">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#logo-grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      BidCraft
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+    <div class="nav-auth" id="nav-auth">
+      <!-- Injected Dynamically -->
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="auth-container">
+    
+    <div class="auth-card glass">
+      <div class="auth-header">
+        <h2 id="auth-card-title">Welcome Back</h2>
+        <p id="auth-card-sub">Sign in to access live real-time auctions</p>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="name@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Sign In</button>
+        <p class="auth-switch">Don't have an account? <span id="switch-to-signup">Register Now</span></p>
+      </form>
+
+      <!-- Registration Form -->
+      <form id="signup-form" style="display: none;">
+        <div class="form-group">
+          <label for="signup-username">Username</label>
+          <input type="text" id="signup-username" class="form-control" placeholder="Choose username" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email Address</label>
+          <input type="email" id="signup-email" class="form-control" placeholder="name@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password (min. 6 chars)</label>
+          <input type="password" id="signup-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-cyan" style="width: 100%; margin-top: 1rem;">Create Account</button>
+        <p class="auth-switch">Already registered? <span id="switch-to-login">Sign In</span></p>
+      </form>
+    </div>
+
+  </main>
+
+  <footer style="margin-top: 5rem; padding: 2rem; border-top: 1px solid var(--border-glass); text-align: center; color: var(--color-text-secondary); font-size: 0.9rem;">
+    <p>&copy; 2026 BidCraft. All rights reserved.</p>
+  </footer>
+
+  <!-- Core JavaScript Libraries -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/socket.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

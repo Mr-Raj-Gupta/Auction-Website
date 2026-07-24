@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BidCraft | Online Auction Portal</title>
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="home-page">
+
+  <!-- Header Navigation -->
+  <nav class="navbar glass">
+    <a href="index.html" class="logo">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#logo-grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <defs>
+          <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6366f1" />
+            <stop offset="100%" stop-color="#06b6d4" />
+          </linearGradient>
+        </defs>
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      BidCraft
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+    <div class="nav-auth" id="nav-auth">
+      <!-- Injected Dynamically by Theme.updateNavbar() -->
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-tag">Real-Time Bidding Network</div>
+    <h1>Real-Time Live <br><span>Online Auctions</span></h1>
+    <p>Welcome to BidCraft! An interactive full-stack online auction application featuring WebSockets, Express, and MongoDB for instant bidding simulation.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center;">
+      <a href="#auctions-section" class="btn btn-primary">Browse Live Auctions</a>
+      <a href="dashboard.html" class="btn btn-secondary">List an Asset</a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container" id="auctions-section">
+    
+    <!-- Search & Filter Controls -->
+    <div class="search-filter-bar glass" style="padding: 1.25rem;">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="search-input" class="form-control" placeholder="Search assets by title or keywords...">
+      </div>
+      
+      <select id="category-filter" class="form-control filter-select">
+        <option value="All">All Categories</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Art">Art</option>
+        <option value="Collectibles">Collectibles</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Vehicles">Vehicles</option>
+        <option value="Real Estate">Real Estate</option>
+        <option value="Sports">Sports</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <select id="sort-filter" class="form-control filter-select">
+        <option value="endingSoonest">Ending Soonest</option>
+        <option value="newest">Newly Listed</option>
+        <option value="currentBidDesc">Highest Bid (High to Low)</option>
+        <option value="currentBidAsc">Lowest Bid (Low to High)</option>
+      </select>
+    </div>
+
+    <!-- Live Auction Grid -->
+    <section class="auctions-grid" id="auctions-grid">
+      <!-- Loading skeletons or data populated by app.js -->
+      <div class="empty-state" style="grid-column: 1/-1;">
+        <div style="display: inline-block; width: 40px; height: 40px; border: 3px solid rgba(99, 102, 241, 0.3); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s infinite linear;"></div>
+        <p style="margin-top: 1rem;">Loading auctions...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="margin-top: 5rem; padding: 2rem; border-top: 1px solid var(--border-glass); text-align: center; color: var(--color-text-secondary); font-size: 0.9rem;">
+    <p>&copy; 2026 BidCraft. All rights reserved.</p>
+  </footer>
+
+  <style>
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- Core JavaScript Libraries -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/socket.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
