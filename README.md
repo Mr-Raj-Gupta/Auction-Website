@@ -96,3 +96,4 @@ Open this URL in your web browser to test the system.
 2. **Instant Balance Refund**: Bidding locks funds. Getting outbid instantly credits the amount back to the outbid user.
 3. **Background Expiry Cron**: Checks database every 5 seconds for expired auctions, closes them, sets the winner, and transfers the bid money to the seller.
 4. **Sleek Cyber/Glassmorphism UI**: Uses beautiful gradients, custom alerts/modals, and smooth hover effects.
+# Auction-Website
