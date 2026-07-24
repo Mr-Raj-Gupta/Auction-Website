@@ -77,9 +77,9 @@ We have created a database seeder script to populate default users and active au
 npm run seed
 ```
 This will create 3 demo users with starting wallets of ₹10,000+:
-- `alice@domain.com` (Password: `password123`)
-- `bob@domain.com` (Password: `password123`)
-- `charlie@domain.com` (Password: `password123`)
+- `demo1@gmail.com` (Password: `password123`)
+- `demo2@gmail.com` (Password: `password123`)
+- `demo3@gmail.com` (Password: `password123`)
 
 ### Step 4: Run the Server
 Run the project using:
