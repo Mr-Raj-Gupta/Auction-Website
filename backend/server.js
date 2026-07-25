@@ -16,6 +16,7 @@ import { fileURLToPath } from 'url';
 import authRoutes from './routes/auth.js';
 import auctionRoutes from './routes/auctions.js';
 import bidRoutes from './routes/bids.js';
+import adminRoutes from './routes/admin.js';
 
 // Models for DB queries in background worker
 import Auction from './models/Auction.js';
@@ -49,6 +50,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', authRoutes);
 app.use('/api/auctions', auctionRoutes);
 app.use('/api/bids', bidRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Serving Frontend Web Files Statically
 app.use(express.static(path.join(__dirname, '../frontend')));
@@ -150,4 +152,13 @@ mongoose
   .catch((err) => {
     console.error('>> Database connection failed! Error:', err);
   });
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`>> Port ${PORT} is already in use. Stop the process using that port or set a different PORT in your environment before restarting.`);
+    process.exit(1);
+  }
+  console.error('>> Server error:', err);
+  process.exit(1);
+});
 

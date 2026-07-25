@@ -190,6 +190,45 @@ const API = {
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || 'Rejection failed');
     return data;
+  },
+
+  getAdminStats: async () => {
+    const res = await fetch(`${API_BASE}/admin/stats`, {
+      headers: API.getHeaders()
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || 'Failed to fetch admin stats');
+    return data;
+  },
+
+  getAdminUsers: async () => {
+    const res = await fetch(`${API_BASE}/admin/users`, {
+      headers: API.getHeaders()
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || 'Failed to fetch admin users');
+    return data;
+  },
+
+  updateUserBalance: async (userId, amount) => {
+    const res = await fetch(`${API_BASE}/admin/users/${userId}/balance`, {
+      method: 'POST',
+      headers: API.getHeaders(),
+      body: JSON.stringify({ amount })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || 'Failed to update user balance');
+    return data;
+  },
+
+  deleteAuction: async (id) => {
+    const res = await fetch(`${API_BASE}/admin/auctions/${id}`, {
+      method: 'DELETE',
+      headers: API.getHeaders()
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || 'Failed to delete listing');
+    return data;
   }
 };
 

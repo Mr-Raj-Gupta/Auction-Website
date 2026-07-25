@@ -57,7 +57,8 @@ router.post('/signup', async (req, res) => {
         id: savedUser._id,
         username: savedUser.username,
         email: savedUser.email,
-        balance: savedUser.balance
+        balance: savedUser.balance,
+        role: savedUser.role
       }
     });
 
@@ -96,7 +97,8 @@ router.post('/login', async (req, res) => {
         id: user._id,
         username: user.username,
         email: user.email,
-        balance: user.balance
+        balance: user.balance,
+        role: user.role
       }
     });
 
@@ -114,7 +116,8 @@ router.get('/profile', auth, async (req, res) => {
       id: user._id,
       username: user.username,
       email: user.email,
-      balance: user.balance
+      balance: user.balance,
+      role: user.role
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

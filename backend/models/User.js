@@ -19,6 +19,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
   balance: {
     type: Number,
     default: 10000.00 // Default fake starting balance of $10,000 for bidding demo

@@ -50,6 +50,25 @@ const Theme = {
 
     const user = API.getUser();
     if (user) {
+      // Dynamic injection of Admin Panel link in nav bar if user has admin role
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks && user.role === 'admin' && !document.getElementById('nav-admin-link')) {
+        const adminLink = document.createElement('a');
+        adminLink.href = 'admin.html';
+        adminLink.className = 'nav-link';
+        adminLink.id = 'nav-admin-link';
+        adminLink.textContent = 'Admin Panel';
+        
+        // Mark as active if on admin page
+        if (window.location.pathname.endsWith('admin.html') || document.getElementById('admin-page')) {
+          adminLink.classList.add('active');
+          document.querySelectorAll('.nav-links .nav-link').forEach(link => {
+            if (link.id !== 'nav-admin-link') link.classList.remove('active');
+          });
+        }
+        navLinks.appendChild(adminLink);
+      }
+
       navAuth.innerHTML = `
         <div class="user-balance-badge">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><line x1="12" y1="4" x2="12" y2="20"></line></svg>

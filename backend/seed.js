@@ -23,15 +23,17 @@ const seedDatabase = async () => {
     console.log('Creating users...');
     const salt = await bcrypt.genSalt(10);
     
-    const hashRaj = await bcrypt.hash('Raj@123', salt);
+    const hashRaj = await bcrypt.hash('Raj@7252', salt);
     const hashAditya = await bcrypt.hash('Aditya@123', salt);
     const hashSatyam = await bcrypt.hash('Satyam@123', salt);
+    const hashPiyush = await bcrypt.hash('Piyush@123', salt);
 
     const raj = new User({
       username: 'Raj_Gupta',
       email: 'mr.raz.gupta@gmail.com',
       passwordHash: hashRaj,
-      balance: 20000.00 // starting budget ₹20,000
+      balance: 20000.00, // starting budget ₹20,000
+      role: 'admin'
     });
 
     const aditya = new User({
@@ -48,14 +50,23 @@ const seedDatabase = async () => {
       balance: 30000.00 // starting budget ₹30,000
     });
 
+    const piyush = new User({
+      username: 'Piyush_Raj',
+      email: 'im.piyushraj@gmail.com',
+      passwordHash: hashPiyush,
+      balance: 20000.00 // starting budget ₹20,000
+    });
+
     await raj.save();
     await aditya.save();
     await satyam.save();
+    await piyush.save();
 
     console.log(`Users seeded successfully:
-      - Raj_Gupta (email: mr.raz.gupta@gmail.com | pass: Raj@123)
+      - Raj_Gupta (email: mr.raz.gupta@gmail.com | pass: Raj@7252 | Role: admin)
       - Aditya_Kumar (email: adityakumar2939@gmail.com | pass: Aditya@123)
-      - Satyam_Kumar (email: satyabgt19@gmail.com | pass: Satyam@123)`);
+      - Satyam_Kumar (email: satyabgt19@gmail.com | pass: Satyam@123)
+      - Piyush_Raj (email: im.piyushraj@gmail.com | pass: Piyush@123)`);
 
     // 3. Create active auctions (with new sellers)
     console.log('Creating live auction items...');

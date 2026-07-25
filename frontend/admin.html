@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BidCraft - Admin Control Center</title>
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-top: 0.5rem;
+    }
+    .stat-lbl {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    .admin-table th {
+      padding: 1rem;
+      text-align: left;
+      background: rgba(45, 106, 79, 0.04);
+      border-bottom: 2px solid var(--border-glass);
+      color: var(--color-text-primary);
+      font-weight: 700;
+    }
+    .admin-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-glass);
+      color: var(--color-text-primary);
+      font-size: 0.95rem;
+    }
+    .admin-table tr:hover {
+      background: rgba(45, 106, 79, 0.01);
+    }
+  </style>
+</head>
+<body id="admin-page">
+
+  <!-- Header Navigation -->
+  <nav class="navbar glass">
+    <a href="index.html" class="logo">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#logo-grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      BidCraft
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+      <a href="admin.html" class="nav-link active" id="nav-admin-link-static">Admin Panel</a>
+    </div>
+    <div class="nav-auth" id="nav-auth">
+      <!-- Injected Dynamically -->
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="dashboard-layout">
+      
+      <!-- Sidebar Control Panel -->
+      <aside class="dashboard-sidebar glass">
+        <div class="dashboard-profile">
+          <div class="profile-avatar" id="dash-avatar" style="background: linear-gradient(135deg, var(--accent), var(--primary));">R</div>
+          <h3 class="profile-username" id="dash-username">Raj Gupta</h3>
+          <p class="profile-email" id="dash-email">mr.raz.gupta@gmail.com</p>
+          <div style="font-size: 0.8rem; color: var(--color-text-secondary); margin-top: 1rem;">System Privilege</div>
+          <div style="font-size: 1.1rem; font-weight: 800; color: var(--accent); margin-top: 0.15rem;">Root Admin</div>
+        </div>
+
+        <nav class="dashboard-menu">
+          <div class="menu-item active" data-tab="overview">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+            System Overview
+          </div>
+          <div class="menu-item" data-tab="users">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            Manage Users
+          </div>
+          <div class="menu-item" data-tab="listings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Manage Listings
+          </div>
+          <div class="menu-item" data-tab="logout" style="color: var(--error); border-top: 1px solid var(--border-glass); margin-top: 1.5rem; border-radius: 0; padding-top: 1.5rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            Logout
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Panel Dynamic Content -->
+      <section style="flex: 1;">
+        
+        <!-- Tab 1: Overview Panel -->
+        <div class="dashboard-content-panel active" id="overview-panel">
+          <div class="glass" style="padding: 2.5rem;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem;">System Overview</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem;">Real-time diagnostics and metrics of the BidCraft auction platform.</p>
+            
+            <div class="stats-grid">
+              <div class="stat-card glass">
+                <div class="stat-lbl">Total Users</div>
+                <div class="stat-val" id="stat-total-users">0</div>
+              </div>
+              <div class="stat-card glass">
+                <div class="stat-lbl">Active Auctions</div>
+                <div class="stat-val" id="stat-active-auctions">0</div>
+              </div>
+              <div class="stat-card glass">
+                <div class="stat-lbl">Closed Auctions</div>
+                <div class="stat-val" id="stat-ended-auctions">0</div>
+              </div>
+              <div class="stat-card glass">
+                <div class="stat-lbl">Total Bids Placed</div>
+                <div class="stat-val" id="stat-total-bids">0</div>
+              </div>
+            </div>
+            
+            <div class="glass" style="padding: 1.5rem; text-align: center;">
+              <h3 style="font-size: 1.1rem; color: var(--primary);">Administrative Controls Enabled</h3>
+              <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 0.25rem;">Use the tabs on the left sidebar to edit user budgets and delete listings.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Manage Users Panel -->
+        <div class="dashboard-content-panel" id="users-panel">
+          <div class="glass" style="padding: 2.5rem; overflow-x: auto;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Manage Platform Users</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">Adjust user wallet balances and monitor system registration details.</p>
+            
+            <div id="users-list-container">
+              <!-- Dynamically populated table -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Manage Listings Panel -->
+        <div class="dashboard-content-panel" id="listings-panel">
+          <div class="glass" style="padding: 2.5rem; overflow-x: auto;">
+            <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Manage Platform Listings</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">Audit all live or closed listings and remove any violations.</p>
+            
+            <div id="listings-list-container">
+              <!-- Dynamically populated table -->
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Edit Balance Modal -->
+  <div class="modal-overlay" id="balance-modal">
+    <div class="modal-container glass">
+      <div class="modal-header">
+        <h3 id="modal-title">Adjust User Balance</h3>
+        <button class="modal-close" id="close-balance-modal" style="font-size: 1.5rem; background: transparent; border: none; cursor: pointer; color: var(--color-text-secondary);">&times;</button>
+      </div>
+      <form id="edit-balance-form">
+        <input type="hidden" id="edit-user-id">
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label for="edit-username-lbl">User Account</label>
+          <input type="text" id="edit-username-lbl" class="form-control" style="background: rgba(45, 106, 79, 0.03); color: var(--color-text-secondary);" disabled>
+        </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label for="edit-balance-input">Wallet Balance (₹)</label>
+          <input type="number" id="edit-balance-input" class="form-control" min="0" step="0.01" required placeholder="e.g. 5000">
+        </div>
+        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+          <button type="button" class="btn btn-secondary" id="cancel-balance-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="save-balance-btn">Update Balance</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer style="margin-top: 5rem; padding: 2rem; border-top: 1px solid var(--border-glass); text-align: center; color: var(--color-text-secondary); font-size: 0.9rem;">
+    <p>&copy; 2026 BidCraft. All rights reserved.</p>
+  </footer>
+
+  <!-- Core JavaScript Libraries -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/admin_app.js"></script>
+</body>
+</html>
